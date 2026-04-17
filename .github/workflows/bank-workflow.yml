@@ -6,7 +6,7 @@ on:
       dataset:
         description: "Dataset file name (inside data/ folder)"
         required: true
-        default: "data/bank.csv"
+        default: "bank.csv"
 
       model:
         description: "Model type (e.g., rf, svm, cnn)"
