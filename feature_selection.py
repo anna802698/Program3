@@ -1,22 +1,39 @@
 import argparse
-import joblib
 import pandas as pd
-from sklearn.ensemble import RandomForestClassifier
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset')
-parser.add_argument('--features')
-parser.add_argument('--model')
-parser.add_argument('--epochs')
-parser.add_argument('--save_model')
-parser.add_argument('--log')
+
+# Required arguments
+parser.add_argument('--dataset', required=True)
+parser.add_argument('--method', default='clo', help="Feature selection method")
+parser.add_argument('--output', required=True, help="Output file")
+
 args = parser.parse_args()
 
-df = pd.read_csv(args.dataset)
-X = df.iloc[:, :-1]
-y = df.iloc[:, -1]
 
-model = RandomForestClassifier()
-model.fit(X, y)
+# -------------------------------
+# Load dataset
+# -------------------------------
+df = pd.read_csv(args.dataset, sep=';')
 
-joblib.dump(model, args.save_model)
+# Convert target
+df['y'] = df['y'].map({'yes': 1, 'no': 0})
+
+# One-hot encoding
+df = pd.get_dummies(df)
+
+X = df.drop('y', axis=1)
+
+
+# -------------------------------
+# Dummy Feature Selection (Replace with CLO/AOOA)
+# -------------------------------
+selected_features = X.columns[:5]  # pick first 5 for now
+
+
+# -------------------------------
+# Save selected features
+# -------------------------------
+pd.DataFrame(selected_features).to_csv(args.output, index=False)
+
+print(f"Selected features saved to {args.output}")
