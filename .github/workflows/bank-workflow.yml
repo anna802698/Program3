@@ -79,7 +79,7 @@ jobs:
       - name: Evaluate Model
         run: |
           python evaluate.py \
-            --model outputs/models/model.pkl \
+            --model outputs/model.pkl \
             --dataset data/${{ github.event.inputs.dataset }} \
             --output outputs/metrics.json
 
