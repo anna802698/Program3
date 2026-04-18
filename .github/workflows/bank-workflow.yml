@@ -72,7 +72,7 @@ jobs:
             --features outputs/selected_features.csv \
             --model ${{ github.event.inputs.model }} \
             --epochs ${{ github.event.inputs.epochs }} \
-            --save_model outputs/models/model.pkl \
+            --save_model outputs/model.pkl \
             --log outputs/logs/train.log
 
       # 8. Evaluate Model
