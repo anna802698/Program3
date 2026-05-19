@@ -80,6 +80,7 @@ jobs:
         run: |
           python evaluate.py \
             --model outputs/model.pkl \
+            --features outputs/selected_features.csv \
             --dataset data/${{ github.event.inputs.dataset }} \
             --output outputs/metrics.json
 
