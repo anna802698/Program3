@@ -53,8 +53,8 @@ jobs:
       # 5. Create output directories
       - name: Prepare folders
         run: |
-          mkdir -p outputs/models
-          mkdir -p outputs/logs
+          mkdir -p outputs
+          mkdir -p outputs
 
       # 6. Run Feature Selection (CLO / AOOA)
       - name: Feature Selection
@@ -72,14 +72,14 @@ jobs:
             --features outputs/selected_features.csv \
             --model ${{ github.event.inputs.model }} \
             --epochs ${{ github.event.inputs.epochs }} \
-            --save_model outputs/models/model.pkl \
-            --log outputs/logs/train.log
+            --save_model outputs/model.pkl \
+            --log outputs/train.log
 
       # 8. Evaluate Model
       - name: Evaluate Model
         run: |
           python evaluate.py \
-            --model model.pkl \
+            --model outputs/model.pkl \
             --dataset data/${{ github.event.inputs.dataset }} \
             --output outputs/metrics.json
 
