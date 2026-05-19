@@ -29,7 +29,7 @@ X = df.drop('y', axis=1)
 # Dummy Feature Selection (Replace with CLO/AOOA)
 # -------------------------------
 selected_features = X.columns[:5]  # pick first 5 for now
-
+print("Selected features:", selected_features  )
 
 # -------------------------------
 # Save selected features
